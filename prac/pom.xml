@@ -39,6 +39,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- RateLimit -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+        <!-- AOP -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
