@@ -11,7 +11,7 @@ pipeline {
             }
             steps{
                 echo 'Maven Build Stage'
-                sh 'mvn -B clean package -Dmaven.test.skip=true'
+                sh 'mvn prac/ -B clean package -Dmaven.test.skip=true'
             }
 	    }
         stage('Image Build'){
