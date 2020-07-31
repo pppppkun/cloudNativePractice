@@ -17,7 +17,7 @@ pipeline {
         stage('Image Build'){
             steps{
                 echo 'Image Build Stage'
-                sh 'docker build prac/. -t pkun/cloud:laster'
+                sh 'docker build prac/. -t pkun/cloud:latest'
             }
         }
         stage('Image Push'){
