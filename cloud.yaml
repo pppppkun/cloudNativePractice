@@ -16,7 +16,7 @@ spec:
         app: cloud
     spec:
       containers:
-      - image: pkun/cloud:1.0.0
+      - image: harbor.edu.cn/cn202004/cloud:latest
         imagePullPolicy: IfNotPresent
         name: cloud
       restartPolicy: Always

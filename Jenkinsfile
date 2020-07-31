@@ -29,15 +29,23 @@ pipeline {
                 sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:latest"
             }
         }
-        stage('Yaml') {
-            steps {
-                echo 'pull k8s Yaml....'
-            }
+    }
+}
+
+node('slave') {
+    container('jnlp-kuectl') {
+        stage('git clone'){
+            git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+        
+        stage('Yaml'){
+            echo "Yaml File Stage"
         }
+
+        stage('Deploy'){
+            echo "Deploy To k8s Stage"
+            sh 'kubectl apply -f ./jenkins/scripts/cloud.yaml -n default'
+        }
+
     }
 }
