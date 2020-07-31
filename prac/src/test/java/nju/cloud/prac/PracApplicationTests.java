@@ -10,4 +10,9 @@ class PracApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void TestMvnTest(){
+        System.out.println("Test success!");
+    }
+
 }

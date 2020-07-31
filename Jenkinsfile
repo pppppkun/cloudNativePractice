@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Maven Build') {
+        stage('Maven Build and Test') {
             agent{
                 docker {
                     image 'maven:latest'
@@ -10,8 +10,10 @@ pipeline {
                 }
             }
             steps{
+                echo 'Maven Test Stage'
+                sh 'cd prac && mvn -B clean test'
                 echo 'Maven Build Stage'
-                sh 'cd prac && mvn -B clean package -Dmaven.test.skip=true'
+                sh 'cd prac && mvn package'
             }
 	    }
         stage('Image Build'){
@@ -27,9 +29,9 @@ pipeline {
                 sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:latest"
             }
         }
-        stage('Test') {
+        stage('Yaml') {
             steps {
-                echo 'Testing..'
+                echo 'pull k8s Yaml....'
             }
         }
         stage('Deploy') {
