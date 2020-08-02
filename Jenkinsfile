@@ -26,6 +26,7 @@ pipeline {
             steps{
                 echo 'Image Push Stage'
                 sh "docker tag cloud:latest harbor.edu.cn/cn202004/cloud:latest"
+                sh 'cat ~/.docker/config.json'
                 sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:latest"
             }
         }
@@ -48,9 +49,9 @@ node('slave') {
 
         stage('Deploy'){
             echo "Deploy To k8s Stage"
+            sh 'kubectl delete deployment cloud -n default'
+            sh 'kubectl delete svc cloud -n default'
             sh 'kubectl apply -f cloud.yaml -n cn202004'
-            sh 'kubectl get service'
-            sh 'kubectl expose deployment cloud --type=NodePort --port=8080'
         }
 
     }
