@@ -33,7 +33,7 @@ pipeline {
 }
 
 node('slave') {
-    container('jnlp-kuectl') {
+    container('jnlp-kubectl') {
         stage('connect'){
             sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068"&password="li2000chun"'
         }
