@@ -19,6 +19,8 @@ spec:
       - image: harbor.edu.cn/cn202004/cloud:latest
         imagePullPolicy: IfNotPresent
         name: cloud
+      imagePullSecrets:
+      - name: cn202004
       restartPolicy: Always
 ---
 apiVersion: v1
