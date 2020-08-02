@@ -35,7 +35,7 @@ pipeline {
 node('slave') {
     container('jnlp-kubectl') {
         stage('connect'){
-            sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068"&password="li2000chun"'
+            sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun"'
         }
         stage('git clone'){
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
