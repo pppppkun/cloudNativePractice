@@ -43,6 +43,7 @@ node('slave') {
         
         stage('Yaml'){
             echo "Yaml File Stage"
+            sh 'ls -a -l'
         }
 
         stage('Deploy'){
