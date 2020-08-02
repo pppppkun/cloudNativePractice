@@ -31,7 +31,7 @@ metadata:
 spec:
   ports:
   - name: cloud
-    nodePort: 32576
+    nodePort: 36000
     port: 8080
     protocol: TCP
     targetPort: 8080
