@@ -48,7 +48,7 @@ node('slave') {
 
         stage('Deploy'){
             echo "Deploy To k8s Stage"
-            sh 'kubectl apply -f cloud.yaml -n default'
+            sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl get service'
             sh 'kubectl expose deployment cloud --type=NodePort'
         }
