@@ -48,7 +48,7 @@ node('slave') {
 
         stage('Deploy'){
             echo "Deploy To k8s Stage"
-            sh 'kubectl apply -f ./jenkins/scripts/cloud.yaml -n default'
+            sh 'kubectl apply -f cloud.yaml -n default'
         }
 
     }
