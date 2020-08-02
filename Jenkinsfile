@@ -26,7 +26,7 @@ pipeline {
             steps{
                 echo 'Image Push Stage'
                 sh "docker tag cloud:latest harbor.edu.cn/cn202004/cloud:latest"
-                sh 'cat ~/.docker/config.json'
+                sh 'cat ~/.docker/config.json | base64 -w 0'
                 sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:latest"
             }
         }
