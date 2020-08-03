@@ -45,7 +45,7 @@ node('slave') {
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
         stage('Yaml'){
-	    sh 'sed -i "s#${old_tag}#${tag}#g" cloud.yaml' 
+	    sh 'sed -i "s#0.0.0#$1.0.0#g" cloud.yaml' 
 	}
         stage('Delete'){
             echo "Delete old deploment and svc"
