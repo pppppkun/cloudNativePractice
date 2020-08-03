@@ -21,7 +21,7 @@ public class HelloController {
         Map<String, String> res = new HashMap<>();
         res.put("Time", new Date(System.currentTimeMillis()).toString());
         res.put("Sentence", "Hello");
-        res.put("Check", "ABCD");
+        res.put("Check", "NMSL");
         return res;
     }
 
