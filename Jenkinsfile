@@ -21,6 +21,7 @@ pipeline {
         stage('Image Build'){
             steps{
                 echo 'Image Build Stage'
+                sh "docker image rm -f f310885e69d1"
                 sh "docker build prac/. -t cloud:${tag}"
             }
         }
