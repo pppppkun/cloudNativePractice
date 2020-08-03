@@ -15,14 +15,15 @@ pipeline {
                 echo 'Maven Test Stage'
                 sh 'cd prac && mvn -B clean test'
                 echo 'Maven Build Stage'
+                sh 'cd prac && mvn package'
             }
 	    }
         stage('Image Build'){
             steps{
                 echo 'Image Build Stage'
                 sh "docker image rm -f 254ad0cdaa12"
-                sh 'cd prac && mvn package'
-                sh "docker build . -t cloud:${tag}"
+                
+                sh "docker build prac/. -t cloud:${tag}"
             }
         }
         stage('Image Push'){
