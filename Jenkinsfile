@@ -1,3 +1,5 @@
+def tag = '1.0.0'
+def old_tag = '0.0.0'
 pipeline {
     agent any
 
@@ -25,9 +27,9 @@ pipeline {
         stage('Image Push'){
             steps{
                 echo 'Image Push Stage'
-                sh "docker tag cloud:latest harbor.edu.cn/cn202004/cloud:latest"
+                sh "docker tag cloud:latest harbor.edu.cn/cn202004/cloud:${tag}"
                 sh 'cat ~/.docker/config.json | base64 -w 0'
-                sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:latest"
+                sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:${tag}"
             }
         }
     }
@@ -41,10 +43,13 @@ node('slave') {
         stage('git clone'){
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
-        
+        stage('Yaml'){
+	    sh 'sed -i "s#${old_tag}##{tag}#g" cloud.yaml ' 
+	}
         stage('Delete'){
             echo "Delete old deploment and svc"
             sh 'kubectl delete deployment cloud -n cn202004'
+            sh 'kubectl delete svc cloud -n cn202004'
         }
 
         stage('Deploy'){

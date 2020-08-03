@@ -16,8 +16,8 @@ spec:
         app: cloud
     spec:
       containers:
-      - image: harbor.edu.cn/cn202004/cloud:latest
-        imagePullPolicy: IfNotPresent
+      - image: harbor.edu.cn/cn202004/cloud:0.0.0
+        imagePullPolicy: Always
         name: cloud
       imagePullSecrets:
       - name: cn202004
