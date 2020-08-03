@@ -20,7 +20,7 @@
 
 ## 3. 扩容场景：
 
-#### 3.1 为该项目提供 Prometheus metrics 接口，可以供 Prometheus 采集监控指标
+#### 3.1 为该项目提供 Prometheus metrics 接口，可以供 Prometheus 采集监控指标✅
 
 #### 3.2 在 Grafana 中的定制应用的监控大屏
 

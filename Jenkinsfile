@@ -42,9 +42,9 @@ node('slave') {
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
         
-        stage('Yaml'){
-            echo "Yaml File Stage"
-            sh 'ls -a -l'
+        stage('Delete'){
+            echo "Delete old deploment and svc"
+            sh 'kubectl delete deployment cloud -n cn202004'
         }
 
         stage('Deploy'){
