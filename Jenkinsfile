@@ -1,4 +1,4 @@
-def tag = '1.0.2'
+def tag = '1.0.3'
 
 pipeline {
     agent any
@@ -21,7 +21,8 @@ pipeline {
         stage('Image Build'){
             steps{
                 echo 'Image Build Stage'
-                sh "docker image rm -f f438958e291c"
+                sh "docker image rm -f 254ad0cdaa12"
+                sh "ls -a -l"
                 sh "docker build prac/. -t cloud:${tag}"
             }
         }
@@ -45,7 +46,7 @@ node('slave') {
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
         stage('Yaml'){
-	    sh 'sed -i "s#0.0.0#1.0.2#g" cloud.yaml' 
+	    sh 'sed -i "s#0.0.0#1.0.3#g" cloud.yaml' 
 	}
         stage('Delete'){
             echo "Delete old deploment and svc"

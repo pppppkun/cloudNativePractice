@@ -16,7 +16,7 @@ import java.util.Map;
 public class HelloController {
 
     @GetMapping("/hello")
-    @RateLimit(limitNum = 5)
+    @RateLimit(limitNum = 100)
     public Object Hello(){
         Map<String, String> res = new HashMap<>();
         res.put("Time", new Date(System.currentTimeMillis()).toString());
