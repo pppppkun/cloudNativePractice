@@ -1,5 +1,4 @@
-def tag = '1.0.0'
-def old_tag = '0.0.0'
+def tag = '1.0.1'
 
 pipeline {
     agent any
@@ -45,7 +44,7 @@ node('slave') {
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
         stage('Yaml'){
-	    sh 'sed -i "s#0.0.0#1.0.0#g" cloud.yaml' 
+	    sh 'sed -i "s#0.0.0#1.0.1#g" cloud.yaml' 
 	}
         stage('Delete'){
             echo "Delete old deploment and svc"
