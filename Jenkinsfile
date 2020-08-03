@@ -19,6 +19,9 @@ pipeline {
             }
 	    }
         stage('Image Build'){
+            agent{
+                label 'master'    
+            }
             steps{
                 echo 'Image Build Stage'
                 sh "docker image rm -f 254ad0cdaa12"
