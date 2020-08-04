@@ -12,7 +12,7 @@ spec:
       app: cloud
   template:
     metadata:
-      annatations:
+      annotations:
         prometheus.io/path: /actuator/prometheus
         prometheus.io/port: "8080"
         prometheus.io/scheme: http
