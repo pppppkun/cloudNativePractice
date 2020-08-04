@@ -4,7 +4,7 @@ metadata:
   labels:
     k8s-app: cloud
   name: cloud
-  namespace: monitoring
+  namespace: cn202004
 spec:
   endpoints:
   - interval: 30s
