@@ -37,7 +37,7 @@ metadata:
   namespace: cn202004
 spec:
   ports:
-  - name: cloud
+  - name: tcp
     nodePort: 36000
     port: 8080
     protocol: TCP
