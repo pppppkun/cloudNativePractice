@@ -12,6 +12,11 @@ spec:
       app: cloud
   template:
     metadata:
+      annatations:
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
       labels:
         app: cloud
     spec:

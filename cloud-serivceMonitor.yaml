@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: cloud
+  name: cloud
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 30s
+    port: tcp
+    path: /actuator/prometheus
+    scheme: 'http'
+  selector:
+    matchLabels:
+      app: cloud
+  namespaceSelector:
+    matchNames:
+    - default
