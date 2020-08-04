@@ -1,7 +1,7 @@
 def tag = '1.0.4'
 
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Maven Build and Test') {
@@ -30,6 +30,9 @@ pipeline {
             }
         }
         stage('Image Push'){
+            agent{
+                label 'master'    
+            }
             steps{
                 echo 'Image Push Stage'
                 sh "docker tag cloud:${tag} harbor.edu.cn/cn202004/cloud:${tag}"
