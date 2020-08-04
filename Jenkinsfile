@@ -63,7 +63,7 @@ node('slave') {
             echo "Deploy To k8s Stage"
             sh 'kubectl apply -f secret.yaml -n cn202004'
             sh 'kubectl apply -f cloud.yaml -n cn202004'
-            sh 'kubectl apply -f cloud-serviceMonitor.yaml'
+            sh 'kubectl apply -f cloud-serviceMonitor.yaml -n cn202004'
         }
 
     }

@@ -16,4 +16,4 @@ spec:
       app: cloud
   namespaceSelector:
     matchNames:
-    - default
+    - cn202004
