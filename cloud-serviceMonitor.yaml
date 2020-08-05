@@ -3,6 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     k8s-app: cloud
+    release: prometheus-operator
   name: cloud
   namespace: monitoring
 spec:
