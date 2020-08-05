@@ -1,5 +1,3 @@
-def tag = '1.0.5'
-
 pipeline {
     agent none
 
@@ -26,7 +24,7 @@ pipeline {
                 echo 'Image Build Stage'
                 sh "docker image rm -f 254ad0cdaa12"
                 
-                sh "docker build prac/. -t cloud:${tag}"
+                sh "docker build prac/. -t cloud:${BUILD_ID}"
             }
         }
         stage('Image Push'){
@@ -35,9 +33,9 @@ pipeline {
             }
             steps{
                 echo 'Image Push Stage'
-                sh "docker tag cloud:${tag} harbor.edu.cn/cn202004/cloud:${tag}"
+                sh "docker tag cloud:${BUILD_ID} harbor.edu.cn/cn202004/cloud:${BUILD_ID}"
                 sh 'cat ~/.docker/config.json | base64 -w 0'
-                sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:${tag}"
+                sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:${BUILD_ID}"
             }
         }
     }
@@ -52,7 +50,7 @@ node('slave') {
             git url: "https://github.com/pppppkun/cloudNativePractice.git"
         }
         stage('Yaml'){
-	    sh 'sed -i "s#0.0.0#1.0.5#g" cloud.yaml' 
+	    sh 'sed -i "s#0.0.0#${BUILD_ID}#g" cloud.yaml' 
 	}
         stage('Delete'){
             echo "Delete old deploment and svc"
