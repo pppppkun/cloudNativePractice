@@ -56,15 +56,13 @@ node('slave') {
             echo "Delete old deploment and svc"
             sh 'kubectl delete deployment cloud -n cn202004'
             sh 'kubectl delete svc cloud -n cn202004'
-            sh 'kubectl delete deployment redis -n cn202004'
-            sh 'kubectl delete svc redis -n cn202004'
         }
         stage('Deploy'){
             echo "Deploy To k8s Stage"
             sh 'kubectl apply -f secret.yaml -n cn202004'
+            sh 'kubectl apply -f redis.yaml -n cn202004'
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
-            sh 'kubectl apply -f redis.yaml -n cn202004'
         }
 
     }
