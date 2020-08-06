@@ -57,6 +57,8 @@ kind: Deployment
 metadata:
   name: redis
   namespace: cn202004
+  labels:
+    app: redis
 spec:
   replicas: 1
   selector:
