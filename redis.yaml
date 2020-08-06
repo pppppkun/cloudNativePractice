@@ -72,7 +72,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: docker.io/library/redis:latest
+        image: harbor.edu.cn/cn202004/redis:LATEST
         volumeMounts:
         - name: foo
           mountPath: "/usr/local/etc"
@@ -80,6 +80,8 @@ spec:
           - "redis-server"
         args:
           - "/usr/local/etc/redis/redis.conf"
+      imagePullSecrets:
+      - name: cn202004
       volumes:
       - name: foo
         configMap:
