@@ -61,6 +61,12 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>LATEST</version>
+		</dependency>
+
 
     </dependencies>
 
