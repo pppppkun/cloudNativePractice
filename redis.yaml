@@ -87,6 +87,8 @@ spec:
           items:
           - key: redis.conf
             path: redis/redis.conf
+      imagePullSecrets:
+        - name: cn202004
 ---
 apiVersion: v1
 kind: Service
