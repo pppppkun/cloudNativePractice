@@ -67,7 +67,7 @@ spec:
   template:
     metadata:
       labels:
-        name: redis
+        app: redis
     spec:
       containers:
       - name: redis
