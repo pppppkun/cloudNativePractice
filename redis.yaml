@@ -59,6 +59,9 @@ metadata:
   namespace: cn202004
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: redis
   template:
     metadata:
       labels:
