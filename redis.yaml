@@ -25,7 +25,6 @@ data:
     repl-diskless-sync-delay 5
     repl-disable-tcp-nodelay no
     slave-priority 100
-    requirepass ibalife
     maxclients 30000
     appendonly no
     appendfilename "appendonly.aof"
