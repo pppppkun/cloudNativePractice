@@ -6,6 +6,7 @@ data:
   redis.conf: |
     pidfile /data/redis.pid
     port 6379
+    bind 0.0.0.0
     requirepass 123456
     tcp-backlog 30000
     timeout 0
