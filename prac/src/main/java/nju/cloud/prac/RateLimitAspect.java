@@ -116,6 +116,9 @@ public class RateLimitAspect {
             outErrorResult("429 TooManyRequest");
         }
 
+        //归还 redis
+        jedis.close();
+
         //获取rateLimiter
         /*if(map.containsKey(functionName)){
             rateLimiter = map.get(functionName);
