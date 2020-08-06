@@ -54,8 +54,6 @@ node('slave') {
 	}
         stage('Delete'){
             echo "Delete old deploment and svc"
-            sh 'kubectl delete deployment cloud -n cn202004'
-            sh 'kubectl delete svc cloud -n cn202004'
         }
         stage('Deploy'){
             echo "Deploy To k8s Stage"
