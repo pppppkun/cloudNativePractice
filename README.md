@@ -22,9 +22,9 @@
 
 #### 3.1 为该项目提供 Prometheus metrics 接口，可以供 Prometheus 采集监控指标✅
 
-#### 3.2 在 Grafana 中的定制应用的监控大屏
+#### 3.2 在 Grafana 中的定制应用的监控大屏✅
 
-#### 3.3 使用压测工具（例如 Jmeter）对接口进压测，观察 Grafana 监控数据
+#### 3.3 使用压测工具（例如 Jmeter）对接口进压测，观察 Grafana 监控数据✅
 
 #### 3.4 通过 Kubernetes 命令进行手工扩容，并再次观察 Grafana 监控数据
 
