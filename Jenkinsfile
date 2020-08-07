@@ -39,13 +39,6 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo "RTF Test"
-            sh 'robot rtf.robot'
-        }
-    }
 }
 
 node('slave') {
@@ -72,6 +65,10 @@ node('slave') {
             sh 'kubectl apply -f redis.yaml -n cn202004'
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
+        }
+        stage('RTF Test'){
+            echo "RTF Test Stage"
+            sh 'kubectl apply -f rtf.yaml -n cn202004'
         }
     }
 }

@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rtf-robot
+data:
+  rtf.robot: |
+    *** Settings ***
+    Library           requests
+    *** Test Cases ***
+    case 1
+        ${res}    requests.get    http://172.29.4.47:36000/hello    text
+        should contain    ${res.text}    Hello
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtf
+  namespace: cn202004
+  labels:
+    app: rtf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtf
+  template:
+    metadata:
+      labels:
+        app: rtf
+    spec:
+      containers:
+      - name: rtf
+        image: harbor.edu.cn/cn202004/python:LATEST
+        volumeMounts:
+        - name: foo
+          mountPath: "/usr/local/etc"
+        command:
+          - "sh"
+        args:
+          - "pip install robotframework && robot /usr/local/etc/rtf.robot"
+      imagePullSecrets:
+      - name: cn202004
+      volumes:
+      - name: foo
+        configMap:
+          name: rtf-robot
+          items:
+          - key: rtf.robot
+            path: rtf.robot
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rtf
+  name: rtf
+  namespace: cn202004
+spec:
+  selector:
+    app: rtf
