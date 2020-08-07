@@ -66,20 +66,10 @@ node('slave') {
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
         }
-    }
-}
-
-node('master') {
-    agent none
-    stages {
         stage('RTF Test') {
-            agent{
-                label 'master'    
-            }
-            steps {
-                echo "RTF Test"
-                sh 'robot rtf.robot'
-            }
+            echo "RTF Test Stage"
+            sh 'pip install robotframework'
+            sh 'robot rtf.robot'
         }
     }
 }
