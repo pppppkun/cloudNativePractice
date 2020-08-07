@@ -66,16 +66,20 @@ node('slave') {
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
         }
-        stage('RTF Prepare') {
-            echo "Prepare for RTF Test"
-            sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun"'
-            sh 'mkdir -p ./rtf/atest && cd rtf && curl https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/rfdocker -o rfdocker && chmod +x rfdocker'
-            sh 'cd rtf && curl https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/Dockerfile -o Dockerfile'
-            sh 'mv ./rtf.robot ./rtf/atest/'
-        }
+    }
+}
+
+pipeline {
+    agent none
+    stages {
         stage('RTF Test') {
-            sh 'cd rtf && ./rfdocker'
-            sh 'cat ./rtf/results/*'
+            agent{
+                label 'master'    
+            }
+            steps {
+                echo "RTF Test"
+                sh 'robot rtf.robot'
+            }
         }
     }
 }
