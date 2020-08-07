@@ -69,7 +69,7 @@ node('slave') {
     }
 }
 
-pipeline {
+node('master') {
     agent none
     stages {
         stage('RTF Test') {
