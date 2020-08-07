@@ -66,6 +66,12 @@ node('slave') {
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
         }
+    }
+}
 
+node('slave') {
+    stage('RTF Test') {
+        echo "RTF Test"
+        sh 'robot rtf.robot'
     }
 }
