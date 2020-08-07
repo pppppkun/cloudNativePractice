@@ -66,19 +66,16 @@ node('slave') {
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
         }
-    }
-}
-
-node('slave') {
-    stage('RTF Prepare') {
-        echo "Prepare for RTF Test"
-        sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun"'
-        sh 'mkdir -p ./rtf/atest && cd rtf && wget https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/rfdocker -O rfdocker && chmod +x rfdocker'
-        sh 'cd rtf && wget https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/Dockerfile -O Dockerfile'
-        sh 'mv rtf.robot ./rtf/atest/'
-    }
-    stage('RTF Test') {
-        sh 'cd rtf && ./rfdocker'
-        sh 'cat ./rtf/results/*'
+        stage('RTF Prepare') {
+            echo "Prepare for RTF Test"
+            sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun"'
+            sh 'mkdir -p ./rtf/atest && cd rtf && wget https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/rfdocker -O rfdocker && chmod +x rfdocker'
+            sh 'cd rtf && wget https://raw.githubusercontent.com/asyrjasalo/rfdocker/master/Dockerfile -O Dockerfile'
+            sh 'mv ./rtf.robot ./rtf/atest/'
+        }
+        stage('RTF Test') {
+            sh 'cd rtf && ./rfdocker'
+            sh 'cat ./rtf/results/*'
+        }
     }
 }
