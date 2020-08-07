@@ -21,7 +21,7 @@ spec:
         command:
           - "sh"
         args:
-          - "-c 'echo -ne \"*** Settings ***\\nLibrary\ \ \ \ \ \ \ \ \ \ \ requests\\n\\n*** Test Cases ***\\ncase 1\\n\ \ \ \ \${res}\ \ \ \ requests.get\ \ \ \ http://172.29.4.47:36000/hello\\n\ \ \ \ should contain\ \ \ \ \${res.text}\ \ \ \ Hello\" > /tmp/rtf.robot && pip install robotframework && robot /tmp/rtf.robot'"
+          - "-c 'echo -ne \"*** Settings ***\\\\nLibrary           requests\\\\n\\\\n*** Test Cases ***\\\\ncase 1\\\\n    \\\\${res}    requests.get    http://172.29.4.47:36000/hello\\\\n    should contain    \\\\${res.text}    Hello\" > /tmp/rtf.robot && pip install robotframework && robot /tmp/rtf.robot'"
       imagePullSecrets:
       - name: cn202004
 ---
