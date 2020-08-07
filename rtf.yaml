@@ -35,8 +35,8 @@ metadata:
 spec:
   ports:
   - name: tcp
-      port: 80
-      protocol: TCP
-      targetPort: 80
+    port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     app: rtf
