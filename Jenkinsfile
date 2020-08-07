@@ -51,15 +51,7 @@ node('slave') {
         }
         stage('Yaml'){
 	    sh 'sed -i "s#0.0.0#${BUILD_ID}#g" cloud.yaml' 
-	}
-        stage('Delete'){
-            echo "Delete old deploment and svc"
-            sh 'kubectl delete deployment cloud -n cn202004'
-            sh 'kubectl delete svc cloud -n cn202004'
-            sh 'kubectl delete deployment redis -n cn202004'
-            sh 'kubectl delete svc redis -n cn202004'
-            sh 'kubectl delete svc rtf -n cn202004'
-        }
+	    }
         stage('Deploy'){
             echo "Deploy To k8s Stage"
             sh 'kubectl apply -f secret.yaml -n cn202004'

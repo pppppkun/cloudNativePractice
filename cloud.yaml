@@ -22,11 +22,9 @@ spec:
     spec:
       containers:
       - image: harbor.edu.cn/cn202004/cloud:0.0.0
-        imagePullPolicy: Always
         name: cloud
       imagePullSecrets:
       - name: cn202004
-      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
