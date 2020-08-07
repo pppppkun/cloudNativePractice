@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: rtf
-        image: harbor.edu.cn/cn202004/python:LATEST
+        image: harbor.edu.cn/cn202004/python:latest
         command:
           - "sh"
         args:
