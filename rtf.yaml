@@ -19,7 +19,7 @@ spec:
       - name: rtf
         image: harbor.edu.cn/cn202004/python:latest
         command: ["/bin/sh"]
-        args: ["-c", 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun" && curl https://raw.githubusercontent.com/pppppkun/cloudNativePractice/master/rtf.robot -o /tmp/rtf.robot && pip install robotframework && robot /tmp/rtf.robot']
+        args: ["-c", 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun" && curl https://raw.githubusercontent.com/pppppkun/cloudNativePractice/master/rtf.robot -o /tmp/rtf.robot && pip install requests && pip install robotframework && robot /tmp/rtf.robot']
       imagePullSecrets:
       - name: cn202004
 ---
