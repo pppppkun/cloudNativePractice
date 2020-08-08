@@ -58,6 +58,7 @@ node('slave') {
             sh 'kubectl apply -f redis.yaml -n cn202004'
             sh 'kubectl apply -f cloud.yaml -n cn202004'
             sh 'kubectl apply -f cloud-serviceMonitor.yaml'
+            sh 'kubectl apply -f cloud-autoscaler.yaml -n cn202004'
         }
         stage('RTF Test'){
             echo "RTF Test Stage"

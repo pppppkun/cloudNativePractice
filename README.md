@@ -28,7 +28,7 @@
 
 #### 3.4 通过 Kubernetes 命令进行手工扩容，并再次观察 Grafana 监控数据 ✅
 
-#### 3.5 加分项：使用 K8s HPA 模块根据 CPU 负载做服务的 Auto Scale
+#### 3.5 加分项：使用 K8s HPA 模块根据 CPU 负载做服务的 Auto Scale ✅
 
 ## 分数说明：
 

@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cloud
+  namespace: cn202004
+spec:
+  scaleTargetRef:
+    kind: Deployment   
+    name: cloud
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
