@@ -21,9 +21,7 @@ pipeline {
                 label 'master'    
             }
             steps{
-                echo 'Image Build Stage'
-                sh "docker image rm -f 254ad0cdaa12"
-                
+                echo 'Image Build Stage'    
                 sh "docker build prac/. -t cloud:${BUILD_ID}"
             }
         }
@@ -33,36 +31,12 @@ pipeline {
             }
             steps{
                 echo 'Image Push Stage'
-                sh "docker tag cloud:${BUILD_ID} harbor.edu.cn/cn202004/cloud:${BUILD_ID}"
-                sh 'cat ~/.docker/config.json | base64 -w 0'
-                sh "docker login --username=cn202004 harbor.edu.cn -p cn202004 && docker push harbor.edu.cn/cn202004/cloud:${BUILD_ID}"
+                sh "docker tag cloud:${BUILD_ID} pkun/cloud:${BUILD_ID}"
+                sh "docker push pkun/cloud:${BUILD_ID}"
             }
         }
-    }
-}
-
-node('slave') {
-    container('jnlp-kubectl') {
-        stage('connect'){
-            sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250068&password=li2000chun"'
-        }
-        stage('git clone'){
-            git url: "https://github.com/pppppkun/cloudNativePractice.git"
-        }
-        stage('Yaml'){
-	    sh 'sed -i "s#0.0.0#${BUILD_ID}#g" cloud.yaml' 
-	    }
         stage('Deploy'){
             echo "Deploy To k8s Stage"
-            sh 'kubectl apply -f secret.yaml -n cn202004'
-            sh 'kubectl apply -f redis.yaml -n cn202004'
-            sh 'kubectl apply -f cloud.yaml -n cn202004'
-            sh 'kubectl apply -f cloud-serviceMonitor.yaml'
-            sh 'kubectl apply -f cloud-autoscaler.yaml -n cn202004'
-        }
-        stage('RTF Test'){
-            echo "RTF Test Stage"
-            sh 'kubectl apply -f rtf.yaml -n cn202004'
         }
     }
 }
