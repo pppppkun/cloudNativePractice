@@ -32,6 +32,7 @@ pipeline {
             steps{
                 echo 'Image Push Stage'
                 sh "docker tag cloud:${BUILD_ID} pkun/cloud:${BUILD_ID}"
+                sh "docker login --username=pkun -p li2000chun"
                 sh "docker push pkun/cloud:${BUILD_ID}"
             }
         }
