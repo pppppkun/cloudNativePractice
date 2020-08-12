@@ -35,8 +35,5 @@ pipeline {
                 sh "docker push pkun/cloud:${BUILD_ID}"
             }
         }
-        stage('Deploy'){
-            echo "Deploy To k8s Stage"
-        }
     }
 }
